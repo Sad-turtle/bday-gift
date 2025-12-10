@@ -10,12 +10,12 @@ import { RetroButton } from './components/RetroButton';
 const STORAGE_KEY = 'princess_quest_progress';
 
 const HUB_MAP = [
-    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
-    "W..............................W",
-    "W..1...2...3...4...5...6...7...W",
-    "W..............................W",
-    "WS.............................W",
-    "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+  "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+  "W..............................W",
+  "W..1...2...3...4...5...6...7...W",
+  "W..............................W",
+  "WS.............................W",
+  "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
 ];
 
 const App: React.FC = () => {
@@ -25,7 +25,7 @@ const App: React.FC = () => {
   const [debugMode, setDebugMode] = useState<boolean>(false);
   const [gameStarted, setGameStarted] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  
+
   // Navigation State
   const [view, setView] = useState<GameView>('HUB');
   const [activeDayId, setActiveDayId] = useState<number | null>(null);
@@ -46,36 +46,34 @@ const App: React.FC = () => {
       setToday(debugDate);
       setDebugMode(true);
     } else {
-      const year = new Date().getFullYear();
-      // TEMPORARY UNLOCK FOR TESTING
-      setToday(`${year}-12-31`); 
-      setDebugMode(true);
+      const todayStr = new Date().toISOString().split('T')[0];
+      setToday(todayStr);
     }
   }, []);
 
   const handleStartGame = () => {
     setGameStarted(true);
     if (audioRef.current) {
-        audioRef.current.volume = 0.5;
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-            playPromise.catch(error => {
-                console.log("Audio play failed:", error);
-                // We won't alert, just let them use the toggle later
-            });
-        }
+      audioRef.current.volume = 0.5;
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log("Audio play failed:", error);
+          // We won't alert, just let them use the toggle later
+        });
+      }
     }
   };
 
   const toggleMusic = () => {
-      if (!audioRef.current) return;
-      if (isMuted) {
-          audioRef.current.play().catch(e => console.error(e));
-          setIsMuted(false);
-      } else {
-          audioRef.current.pause();
-          setIsMuted(true);
-      }
+    if (!audioRef.current) return;
+    if (isMuted) {
+      audioRef.current.play().catch(e => console.error(e));
+      setIsMuted(false);
+    } else {
+      audioRef.current.pause();
+      setIsMuted(true);
+    }
   };
 
   const handleDoorEnter = (doorId: number) => {
@@ -83,9 +81,9 @@ const App: React.FC = () => {
     if (!day) return;
 
     if (day.date > today) {
-        setLockedMessage(day.lockedMessage || "Locked until the date arrives!");
-        setTimeout(() => setLockedMessage(null), 3000);
-        return;
+      setLockedMessage(day.lockedMessage || "Locked until the date arrives!");
+      setTimeout(() => setLockedMessage(null), 3000);
+      return;
     }
 
     setActiveDayId(doorId);
@@ -114,8 +112,8 @@ const App: React.FC = () => {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-4 font-['Press_Start_2P']">
         <div className="bg-white border-4 border-pink-400 p-8 shadow-lg text-center">
-            <h1 className="text-xl mb-4 text-pink-600">Quest Loading...</h1>
-            <p className="text-xs text-gray-600 leading-6">The castle gates will open on <br/> {QUEST_CONFIG.startDate}</p>
+          <h1 className="text-xl mb-4 text-pink-600">Quest Loading...</h1>
+          <p className="text-xs text-gray-600 leading-6">The castle gates will open on <br /> {QUEST_CONFIG.startDate}</p>
         </div>
       </div>
     );
@@ -123,33 +121,33 @@ const App: React.FC = () => {
 
   // Start Screen (Required for Audio)
   if (!gameStarted) {
-      return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-4 font-['Press_Start_2P'] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
-            <div className="bg-white p-8 border-4 border-yellow-400 shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] text-center max-w-sm animate-in zoom-in duration-300">
-                <h1 className="text-2xl text-pink-500 mb-6 leading-tight">Princess Quest</h1>
-                <div className="text-4xl mb-6">👑</div>
-                <p className="text-xs text-gray-500 mb-8 leading-relaxed">
-                    A magical adventure awaits you. Turn up your volume!
-                </p>
-                <RetroButton onClick={handleStartGame} fullWidth>
-                    ENTER CASTLE
-                </RetroButton>
-            </div>
-            
-            {/* Audio Element */}
-            <audio ref={audioRef} loop preload="auto">
-                <source src="./music.mp3" type="audio/mpeg" />
-            </audio>
+    return (
+      <div className="min-h-screen flex flex-col items-center justify-center bg-pink-50 p-4 font-['Press_Start_2P'] bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]">
+        <div className="bg-white p-8 border-4 border-yellow-400 shadow-[8px_8px_0_0_rgba(0,0,0,0.1)] text-center max-w-sm animate-in zoom-in duration-300">
+          <h1 className="text-2xl text-pink-500 mb-6 leading-tight">Princess Quest</h1>
+          <div className="text-4xl mb-6">👑</div>
+          <p className="text-xs text-gray-500 mb-8 leading-relaxed">
+            A magical adventure awaits you. Turn up your volume!
+          </p>
+          <RetroButton onClick={handleStartGame} fullWidth>
+            ENTER CASTLE
+          </RetroButton>
         </div>
-      );
+
+        {/* Audio Element */}
+        <audio ref={audioRef} loop preload="auto">
+          <source src="./music.mp3" type="audio/mpeg" />
+        </audio>
+      </div>
+    );
   }
 
   const doorStatus: any = {};
   QUEST_CONFIG.days.forEach(day => {
-      doorStatus[day.id] = {
-          isLocked: day.date > today,
-          isCompleted: !!progress[day.id]
-      }
+    doorStatus[day.id] = {
+      isLocked: day.date > today,
+      isCompleted: !!progress[day.id]
+    }
   });
 
   const activeDay = activeDayId ? QUEST_CONFIG.days.find(d => d.id === activeDayId) : null;
@@ -157,7 +155,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-12 px-2 pt-4 max-w-2xl mx-auto relative select-none font-['Press_Start_2P']">
-      
+
       {/* Audio Element (Persisted) */}
       <audio ref={audioRef} loop preload="auto">
         <source src="./music.mp3" type="audio/mpeg" />
@@ -166,69 +164,69 @@ const App: React.FC = () => {
       {/* Header & Controls */}
       <header className="flex justify-between items-center mb-6 px-2">
         <div className="flex gap-2">
-            <button 
-                onClick={() => { setView('HUB'); setActiveDayId(null); }}
-                className="bg-white border-4 border-pink-400 px-3 py-2 text-[10px] shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] hover:bg-pink-50 active:translate-y-1"
-            >
-                🏰 HUB
-            </button>
-            <button 
-                onClick={() => setView('EVOLUTION')}
-                className="bg-purple-100 border-4 border-purple-400 px-3 py-2 text-[10px] shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] hover:bg-purple-50 active:translate-y-1"
-            >
-                👗 MY STYLE
-            </button>
+          <button
+            onClick={() => { setView('HUB'); setActiveDayId(null); }}
+            className="bg-white border-4 border-pink-400 px-3 py-2 text-[10px] shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] hover:bg-pink-50 active:translate-y-1"
+          >
+            🏰 HUB
+          </button>
+          <button
+            onClick={() => setView('EVOLUTION')}
+            className="bg-purple-100 border-4 border-purple-400 px-3 py-2 text-[10px] shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] hover:bg-purple-50 active:translate-y-1"
+          >
+            👗 MY STYLE
+          </button>
         </div>
-        
-        <button 
-            onClick={toggleMusic}
-            className={`w-10 h-10 border-4 flex items-center justify-center text-lg active:scale-95 transition-colors ${isMuted ? 'bg-gray-200 border-gray-400 text-gray-500' : 'bg-green-100 border-green-400 text-green-600'}`}
+
+        <button
+          onClick={toggleMusic}
+          className={`w-10 h-10 border-4 flex items-center justify-center text-lg active:scale-95 transition-colors ${isMuted ? 'bg-gray-200 border-gray-400 text-gray-500' : 'bg-green-100 border-green-400 text-green-600'}`}
         >
-            {isMuted ? '🔇' : '🎵'}
+          {isMuted ? '🔇' : '🎵'}
         </button>
       </header>
 
       {/* Game Area */}
       <div className="flex justify-center">
         {view === 'HUB' && (
-            <GameLevel 
-                layout={HUB_MAP}
-                doors={doorStatus}
-                onDoorEnter={handleDoorEnter}
-                onChestFound={() => {}}
-                // No theme passed here = uses default grey/gold hub theme
-            />
+          <GameLevel
+            layout={HUB_MAP}
+            doors={doorStatus}
+            onDoorEnter={handleDoorEnter}
+            onChestFound={() => { }}
+          // No theme passed here = uses default grey/gold hub theme
+          />
         )}
 
         {view === 'ROOM' && activeDay && (
-            <div className="relative animate-in zoom-in-95 duration-300">
-                <GameLevel 
-                    layout={activeDay.mapLayout}
-                    theme={activeDay.theme}
-                    doors={{}}
-                    onDoorEnter={() => {}}
-                    onChestFound={handleChestFound}
-                />
-            </div>
+          <div className="relative animate-in zoom-in-95 duration-300">
+            <GameLevel
+              layout={activeDay.mapLayout}
+              theme={activeDay.theme}
+              doors={{}}
+              onDoorEnter={() => { }}
+              onChestFound={handleChestFound}
+            />
+          </div>
         )}
 
         {view === 'EVOLUTION' && (
-            <EvolutionView 
-                completedCount={completedCount} 
-                onBack={() => setView('HUB')} 
-            />
+          <EvolutionView
+            completedCount={completedCount}
+            onBack={() => setView('HUB')}
+          />
         )}
 
         {view === 'RIDDLE' && (
-             // Riddle is handled by Modal, but we keep this empty div to maintain layout flow if needed
-             <div className="h-0"></div>
+          // Riddle is handled by Modal, but we keep this empty div to maintain layout flow if needed
+          <div className="h-0"></div>
         )}
       </div>
 
       <div className="text-center mt-6 text-[10px] text-gray-500 bg-white/80 backdrop-blur border-2 border-pink-200 p-3 rounded mx-4 shadow-sm">
-         {view === 'HUB' && "GUIDE THE PRINCESS. ENTER THE DOORS."}
-         {view === 'ROOM' && "FIND THE TREASURE CHEST!"}
-         {view === 'EVOLUTION' && "YOUR STYLE EVOLVES AS YOU UNLOCK GIFTS!"}
+        {view === 'HUB' && "GUIDE THE PRINCESS. ENTER THE DOORS."}
+        {view === 'ROOM' && "FIND THE TREASURE CHEST!"}
+        {view === 'EVOLUTION' && "YOUR STYLE EVOLVES AS YOU UNLOCK GIFTS!"}
       </div>
 
       {lockedMessage && (
@@ -255,9 +253,9 @@ const App: React.FC = () => {
       </Modal>
 
       {debugMode && (
-          <div className="fixed bottom-0 right-0 bg-black text-green-400 text-[10px] p-1 font-mono opacity-50 z-50 pointer-events-none">
-              DEBUG: {today}
-          </div>
+        <div className="fixed bottom-0 right-0 bg-black text-green-400 text-[10px] p-1 font-mono opacity-50 z-50 pointer-events-none">
+          DEBUG: {today}
+        </div>
       )}
     </div>
   );

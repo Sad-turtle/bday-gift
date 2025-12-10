@@ -52,7 +52,7 @@ const MAPS = {
   studio: [
     "WWWWWWWWWWWWW",
     "W...........W",
-    "WS....W....CW", 
+    "WS....W....CW",
     "W...........W",
     "WWWWWWWWWWWWW"
   ],
@@ -90,7 +90,7 @@ const MAPS = {
 
 export const QUEST_CONFIG: QuestConfig = {
   recipientName: "Princess",
-  startDate: `${CURRENT_YEAR}-12-10`, 
+  startDate: `${CURRENT_YEAR}-12-10`,
   theme: {
     primaryColor: "pink-500",
     secondaryColor: "yellow-400"
@@ -100,10 +100,10 @@ export const QUEST_CONFIG: QuestConfig = {
       id: 1,
       date: `${CURRENT_YEAR}-12-10`,
       title: "Level 1: The Bathroom",
-      // Gift: Electric Toothbrush
-      riddle: "I vibrate in your hand and go in your mouth. Use me until you finish.",
-      answer: ["toothbrush", "electric toothbrush", "brush"],
-      rewardMessage: "Check by the sink! 🦷",
+      // Gift: Vibrator
+      riddle: "I am a device used to induce reflex muscle contractions and stress relief.",
+      answer: ["vibrator", "toy", "wand"],
+      rewardMessage: "Check by the sink! 🌙",
       lockedMessage: "Patience! Opens Dec 10.",
       mapLayout: MAPS.bathroom,
       theme: { wallColor: "#0ea5e9", floorColor: "#e0f2fe", accentColor: "#ffffff" } // Clean Blue
@@ -156,10 +156,10 @@ export const QUEST_CONFIG: QuestConfig = {
       id: 6,
       date: `${CURRENT_YEAR}-12-15`,
       title: "Level 6: The Bedroom",
-      // Gift: Vibrator
-      riddle: "I am a device used to induce reflex muscle contractions and stress relief.",
-      answer: ["vibrator", "toy", "wand"],
-      rewardMessage: "Under the covers! 🌙",
+      // Gift: Electric Toothbrush (Swapped)
+      riddle: "I vibrate in your hand and go in your mouth. Use me until you finish.",
+      answer: ["toothbrush", "electric toothbrush", "brush"],
+      rewardMessage: "Under the covers! 🦷",
       mapLayout: MAPS.bedroom,
       theme: { wallColor: "#4c1d95", floorColor: "#f3e8ff", accentColor: "#d8b4fe" } // Deep Purple
     },
