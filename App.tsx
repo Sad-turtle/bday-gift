@@ -153,6 +153,15 @@ const App: React.FC = () => {
   const activeDay = activeDayId ? QUEST_CONFIG.days.find(d => d.id === activeDayId) : null;
   const completedCount = Object.values(progress).filter(Boolean).length;
 
+  const handleResetProgress = () => {
+    if (window.confirm("Are you sure you want to reset your progress? This cannot be undone.")) {
+      localStorage.removeItem(STORAGE_KEY);
+      setProgress({});
+      setView('HUB');
+      setActiveDayId(null);
+    }
+  };
+
   return (
     <div className="min-h-screen pb-12 px-2 pt-4 max-w-2xl mx-auto relative select-none font-['Press_Start_2P']">
 
@@ -178,12 +187,21 @@ const App: React.FC = () => {
           </button>
         </div>
 
-        <button
-          onClick={toggleMusic}
-          className={`w-10 h-10 border-4 flex items-center justify-center text-lg active:scale-95 transition-colors ${isMuted ? 'bg-gray-200 border-gray-400 text-gray-500' : 'bg-green-100 border-green-400 text-green-600'}`}
-        >
-          {isMuted ? '🔇' : '🎵'}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={handleResetProgress}
+            className="bg-red-100 border-4 border-red-400 px-2 py-2 text-[10px] shadow-[2px_2px_0_0_rgba(0,0,0,0.1)] hover:bg-red-50 active:translate-y-1 text-red-600"
+            title="Reset Progress"
+          >
+            ↺
+          </button>
+          <button
+            onClick={toggleMusic}
+            className={`w-10 h-10 border-4 flex items-center justify-center text-lg active:scale-95 transition-colors ${isMuted ? 'bg-gray-200 border-gray-400 text-gray-500' : 'bg-green-100 border-green-400 text-green-600'}`}
+          >
+            {isMuted ? '🔇' : '🎵'}
+          </button>
+        </div>
       </header>
 
       {/* Game Area */}
