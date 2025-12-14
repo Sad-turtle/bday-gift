@@ -144,24 +144,24 @@ export const QUEST_CONFIG: QuestConfig = {
     {
       id: 5,
       date: `${CURRENT_YEAR}-12-14`,
-      title: "Level 5: The Washroom",
-      // Gift: Electric Toothbrush
-      riddle: "I vibrate in your hand and go in your mouth. Use me until you finish.",
-      answer: ["toothbrush", "electric toothbrush", "brush"],
-      rewardMessage: "By the sink! 🦷",
-      mapLayout: MAPS.bathroom,
-      theme: { wallColor: "#0ea5e9", floorColor: "#e0f2fe", accentColor: "#ffffff" } // Clean Blue
-    },
-    {
-      id: 6,
-      date: `${CURRENT_YEAR}-12-15`,
-      title: "Level 6: The Studio",
+      title: "Level 5: The Studio",
       // Gift: Instax Mini
       riddle: "I shoot things.",
       answer: ["camera", "instax", "polaroid", "instax mini"],
       rewardMessage: "Inside your tote bag! 📸",
       mapLayout: MAPS.studio,
       theme: { wallColor: "#c084fc", floorColor: "#faf5ff", accentColor: "#f0abfc" } // Pop Purple
+    },
+    {
+      id: 6,
+      date: `${CURRENT_YEAR}-12-15`,
+      title: "Level 6: The Washroom",
+      // Gift: Electric Toothbrush
+      riddle: "I vibrate in your hand and go in your mouth. Use me until you finish.",
+      answer: ["toothbrush", "electric toothbrush", "brush"],
+      rewardMessage: "By the sink! 🦷",
+      mapLayout: MAPS.bathroom,
+      theme: { wallColor: "#0ea5e9", floorColor: "#e0f2fe", accentColor: "#ffffff" } // Clean Blue
     },
     {
       id: 7,
