@@ -12,8 +12,8 @@ export const EVOLUTION_TITLES = [
   "Secret Admirer",
   "Photogenic Queen",
   "Intellectual Beauty",
-  "Artistic Soul",
   "Vibing Goddess",
+  "Artistic Soul",
   "The Ultimate Princess"
 ];
 
