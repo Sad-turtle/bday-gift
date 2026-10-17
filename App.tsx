@@ -80,7 +80,7 @@ const App: React.FC = () => {
     const day = QUEST_CONFIG.days.find(d => d.id === doorId);
     if (!day) return;
 
-    if (day.date > today) {
+    if (false && day.date > today) {
       setLockedMessage(day.lockedMessage || "Locked until the date arrives!");
       setTimeout(() => setLockedMessage(null), 3000);
       return;
@@ -108,7 +108,7 @@ const App: React.FC = () => {
   };
 
   // Pre-Game Loading Screen
-  if (today && today < QUEST_CONFIG.startDate) {
+  if (false && today && today < QUEST_CONFIG.startDate) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-pink-100 p-4 font-['Press_Start_2P']">
         <div className="bg-white border-4 border-pink-400 p-8 shadow-lg text-center">
@@ -145,7 +145,7 @@ const App: React.FC = () => {
   const doorStatus: any = {};
   QUEST_CONFIG.days.forEach(day => {
     doorStatus[day.id] = {
-      isLocked: day.date > today,
+      isLocked: false,
       isCompleted: !!progress[day.id]
     }
   });
